@@ -4,6 +4,7 @@ export default function Emailform() {
             <div className="bg-white">
                 <div>
                     <h1>Hello</h1>
+                    <h1>Hello 2</h1>
                 </div>
             </div>
         </nav>
