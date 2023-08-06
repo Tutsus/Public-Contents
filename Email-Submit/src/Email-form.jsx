@@ -2,8 +2,8 @@ import { AiFillCheckCircle } from 'react-icons/ai';
 export default function Emailform() {
     return (
         <nav className=" bg-gray-900 max-w-screen h-screen sm:flex sm:justify-center sm:items-center">
-            <div className="bg-white text-left relative -top-48">
-            <img className="w-84 sm:py-4 sm:px-4 rounded-2xl object-cover object-bottom" src="Image2.png" alt="image" />
+            <div className="bg-white text-left rounded-xl relative -top-48 sm:top-0 pb-12 sm:flex">
+            <img className="w-84 sm:py-4 sm:px-4 rounded-2xl object-cover object-bottom sm:hidden" src="Image2.png" alt="image" />
                 <div className='px-8'>
                     <h1 className='text-4xl font-bold mt-8'>Stay updated!</h1>    
                     <ul className='my-4 mb-8'>
@@ -12,12 +12,13 @@ export default function Emailform() {
                         <li className='mt-4 flex'><AiFillCheckCircle className='mt-1 text-blue-600 text-xl mr-3'/>Measuring to ensure updates are a success</li>
                         <li className='mt-4 flex'><AiFillCheckCircle className='mt-1 text-blue-600 text-xl mr-3'/>And much more!</li>
                     </ul>
-                    <p className='text-sm mb-2 font-medium'>Email address</p>
+                    <p className='text-sm mb-2 ml-4 font-medium'>Email address</p>
                     <div className='text-center'>
-                        <input className='border-2 w-11/12 py-3 rounded-lg text-justify pl-6' type="email" name="email" id="email" placeholder="email@company.com"/>
+                        <input className='border-2 w-11/12 py-3 rounded-lg text-justify pl-6 text-cente' type="email" name="email" id="email" placeholder="email@company.com"/>
                         <button className='bg-gray-900 text-white font-semibold rounded-lg w-11/12 py-4 mt-6' type="button">Subscribe to monthly newsletter</button>
                     </div>
                 </div>
+                <img className='rounded-2xl px-2 py-2 hidden sm:flex' src="Image.png" alt="Image" />
             </div>
         </nav>
     )
