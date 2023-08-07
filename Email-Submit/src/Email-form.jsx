@@ -1,5 +1,8 @@
+import { useState } from 'react'
 import { AiFillCheckCircle } from 'react-icons/ai';
 export default function Emailform() {
+
+
     return (
         <nav className=" bg-gray-900 max-w-screen h-screen sm:flex sm:justify-center sm:items-center">
             <div className="bg-white text-left rounded-xl relative -top-48 sm:top-0 pb-12 sm:pb-0 sm:flex">
@@ -14,11 +17,13 @@ export default function Emailform() {
                     </ul>
                     <p className='text-sm mb-2 ml-4 font-medium'>Email address</p>
                     <div className='text-center'>
-                        <input className='border-2 w-11/12 py-3 rounded-lg text-justify pl-6 text-cente' type="email" name="email" id="email" placeholder="email@company.com"/>
-                        <button className='bg-gray-900 text-white font-semibold rounded-lg w-11/12 py-4 mt-6' type="button">Subscribe to monthly newsletter</button>
+                        <input className='border-2 w-11/12 py-3 rounded-lg text-justify pl-6 ' type="email" name="email" id="email" placeholder="email@company.com"/>
+                        <button
+                        id='inputForm' className='bg-gray-900 text-white font-semibold rounded-lg w-11/12 py-4 mt-6' type="button">Subscribe to monthly newsletter
+                        </button>
                     </div>
                 </div>
-                <img className='rounded-2xl px-2 py-2 hidden sm:flex w-96' src="Image.png" alt="Image" />
+                <img id='inputBot' className='rounded-2xl px-2 py-2 hidden sm:flex w-96' src="Image.png" alt="Image" />
             </div>
         </nav>
     )
