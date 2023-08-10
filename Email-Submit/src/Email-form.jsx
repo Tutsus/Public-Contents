@@ -15,19 +15,22 @@ export default function Emailform() {
         return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email);   
     }
 
-    const handleSubmit = event => {
+    function handleSubmit(event)  {
         event.preventDefault();
-        isValidEmail(email) ? setError('Vaild email requied') : setError(null);
-        setSubmit (!submit);
-    };
+        if (!isValidEmail(email)) {
+            setError('Valid email required');
+          } else {
+            setSubmit (!submit);
+          }
+    }
 
-    const handleInputChange = event => {
+    function handleInputChange(event) {
         setEmail(event.target.value);
-    };
+    }
 
     return (
         <>
-            <div className={!submit ? 'bg-gray-900 max-w-screen h-screen sm:flex sm:justify-center sm:items-center' : 'fixed -left-full'}>
+            <div className={!submit ? 'bg-gray-900 max-w-screen h-screen sm:flex sm:justify-center sm:items-center' : 'hidden'}>
                 <div className="bg-white text-left rounded-xl relative -top-48 sm:top-0 pb-12 sm:pb-0 sm:flex">
                     <img className="w-84 sm:py-4 sm:px-4 rounded-2xl object-cover object-bottom sm:hidden" src="Image2.png" alt="image" />
                     <div className='px-8'>
