@@ -70,13 +70,13 @@ export default function Emailform() {
                 </div>
             </div>
 
-            <div className= {!submit ? 'fixed -left-full' : 'w-screen h-screen bg-gray-900 flex justify-center items-center'}>
+            <div className= {!submit ? 'hidden' : 'w-screen h-screen bg-gray-900 flex justify-center items-center'}>
                 <div className='bg-white rounded-xl px-4 py-4 sm:p-12 w-1/2'>
                         <AiFillCheckCircle className='mb-8  text-blue-600 text-6xl mr-3'/>
                         <h1 className='text-3xl sm:text-5xl font-bold mb-8'>Thanks for subscribing!</h1>
                         <p className=' text-lg mb-8'>A confirm email has been sent to <span className='font-bold inline-block'>ash@loremcompany.com</span>. Please open it and click the button inside to confirm your subscription.</p>
                     <div>
-                        <button onClick={handleDismiss} className={!dismiss ? 'bg-gray-900 text-white font-semibold rounded-lg px-8 py-4 text-center w-full' : 'hidden'} type="button">Dismiss message</button>
+                        <button onClick={handleDismiss} className='bg-gray-900 text-white font-semibold rounded-lg px-8 py-4 text-center w-full' type="button">Dismiss message</button>
                     </div>
                 </div>
             </div>
