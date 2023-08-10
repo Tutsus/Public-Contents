@@ -5,12 +5,7 @@ export default function Emailform() {
     const [email, setEmail] = useState('');
     const [error, setError] = useState('');
     const [submit, setSubmit] = useState(false);
-    const [dismiss, setDismiss] = useState('');
 
-    function handleDismiss() {
-        setDismiss (!dismiss);
-    }
-    
     function isValidEmail(email) {
         return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email);   
     }
@@ -76,7 +71,7 @@ export default function Emailform() {
                         <h1 className='text-3xl sm:text-5xl font-bold mb-8'>Thanks for subscribing!</h1>
                         <p className=' text-lg mb-8'>A confirm email has been sent to <span className='font-bold inline-block'>ash@loremcompany.com</span>. Please open it and click the button inside to confirm your subscription.</p>
                     <div>
-                        <button onClick={handleDismiss} className='bg-gray-900 text-white font-semibold rounded-lg px-8 py-4 text-center w-full' type="button">Dismiss message</button>
+                        <button className='bg-gray-900 text-white font-semibold rounded-lg px-8 py-4 text-center w-full' type="button">Dismiss message</button>
                     </div>
                 </div>
             </div>
