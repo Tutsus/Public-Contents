@@ -1,3 +1,3 @@
 # Tailwind-Components
 
-Those are components I saved to use later.
+Those are free compuments that you can use it for your project or whatever you want it to
