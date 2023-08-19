@@ -24,6 +24,7 @@ export default function Calculator() {
             current_day = current_day + date[month - 1];
             current_month--;
         }
+
         if (month > current_month) {
             current_year--;
             current_month = current_month + 12;
@@ -69,21 +70,13 @@ export default function Calculator() {
             setInvalidYear("This field is required")
         }
 
-        if (day >= 1 && day <= 31){
+        if (day >= 1 && day <= 31 && month >= 1 && month <= 12 && year >= 1 && year <= current_year) {
             setOutputDay(calculateDay);
-        } else {
-            setOutputDay("--");
-        }
-
-        if (month >= 1 && month <= 12){
             setOutputMonth(calculateMonth);
-        } else {
-            setOutputMonth("--");
-        }
-
-        if (year >= 1 && year <= current_year){
             setOutputYear(calculateYear);
         } else {
+            setOutputDay("--");
+            setOutputMonth("--");
             setOutputYear("--");
         }
     }
@@ -143,7 +136,7 @@ export default function Calculator() {
                                 value={year}
                             />
                         </div>
-                        <div className="flex">
+                        <div className="block relative top-0 left-0">
                             {invalidDay && (
                                 <div className=" md:mx-7 sm:w-28 md:w-36 font-medium text-sm text-red-500">
                                     {invalidDay}
