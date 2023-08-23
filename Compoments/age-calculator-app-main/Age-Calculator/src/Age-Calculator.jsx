@@ -11,6 +11,7 @@ export default function Calculator() {
     const [invalidDay, setInvalidDay] = useState("");
     const [invalidMonth, setInvalidMonth] = useState("");
     const [invalidYear, setInvalidYear] = useState("");
+    const [invalidAll, setInvalidAll] = useState(true);
 
     function handleClick() {
 
@@ -70,6 +71,18 @@ export default function Calculator() {
             setInvalidYear("This field is required")
         }
 
+        if (isNaN(!calculateDay || !calculateMonth || !calculateYear)) {
+            setInvalidAll(false);
+        } else if (year === false) {
+            setInvalidAll(false);
+        } else if (year >= 1 && year <= current_year && month >= 1 && month <= 12 && day >= 1 && day <= 31) {
+            setInvalidAll(true);
+        } else if (year < 1 || year >= current_year){
+            setInvalidAll(false);
+        } else {
+            setInvalidAll(false);
+        }
+
         if (day >= 1 && day <= 31 && month >= 1 && month <= 12 && year >= 1 && year <= current_year) {
             setOutputDay(calculateDay);
             setOutputMonth(calculateMonth);
@@ -101,22 +114,28 @@ export default function Calculator() {
             <nav className="max-w-screen h-screen bg-black-100 flex justify-center items-center">
                 <div className="bg-white rounded-2xl rounded-br-5xl py-6 px-6 sm:py-10 sm:px-8">
                     <div className="flex items-center uppercase mb-1 text-black-400 tracking-widest">
-                        <p className="mx-3 md:mx-7 w-24 sm:w-28 md:w-36 font-medium text-sm">Day</p>
-                        <p className="mx-3 md:mx-7 w-24 sm:w-28 md:w-36 font-medium text-sm">Month</p>
-                        <p className="mx-3 md:mx-7 w-24 sm:w-28 md:w-36 font-medium text-sm">Year</p>
+                        <p className={invalidAll ? "mx-3 md:mx-7 w-24 sm:w-28 md:w-36 font-medium text-sm" : "mx-3 md:mx-7 w-24 sm:w-28 md:w-36 font-medium text-sm text-red-500"}>
+                            Day 
+                        </p>
+                        <p className={invalidAll ? "mx-3 md:mx-7 w-24 sm:w-28 md:w-36 font-medium text-sm" : "mx-3 md:mx-7 w-24 sm:w-28 md:w-36 font-medium text-sm text-red-500"}>
+                            Month 
+                        </p>
+                        <p className={invalidAll ? "mx-3 md:mx-7 w-24 sm:w-28 md:w-36 font-medium text-sm" : "mx-3 md:mx-7 w-24 sm:w-28 md:w-36 font-medium text-sm text-red-500"}>
+                            YEAR 
+                        </p>
                     </div>
-                        <div className="flex">
-                            <input className="p-4 px-5 mx-3 md:mx-7 w-24 sm:w-28 md:w-36 h-18 rounded-xl text-xl sm:text-3xl font-bold border border-black-400 outline-purple-900 " 
+                        <div className="flex justify-evenly mr-32">
+                            <input className={invalidAll ? "p-4 px-5 mx-3 md:mx-7 w-24 sm:w-28 md:w-36 h-18 rounded-xl text-xl sm:text-3xl font-bold border border-black-400 outline-purple-900" : "p-4 px-5 mx-3 md:mx-7 w-24 sm:w-28 md:w-36 h-18 rounded-xl text-xl sm:text-3xl font-bold border border-red-400 outline-red-500"} 
                                 type="number" 
                                 placeholder="DD" 
-                                name="DD" 
-                                id="Day" 
-                                min="1" 
+                                name="DD"
+                                id="Day"
+                                min="1"
                                 max="31"
                                 onChange={handleValueDay}
-                                value={day}  
+                                value={day} 
                             />
-                            <input className="p-4 px-5 mx-3 md:mx-7 w-24 sm:w-28 md:w-36 h-18 rounded-xl text-xl sm:text-3xl font-bold border border-black-400 outline-purple-900 " 
+                            <input className={invalidAll ? "p-4 px-5 mx-3 md:mx-7 w-24 sm:w-28 md:w-36 h-18 rounded-xl text-xl sm:text-3xl font-bold border border-black-400 outline-purple-900" : "p-4 px-5 mx-3 md:mx-7 w-24 sm:w-28 md:w-36 h-18 rounded-xl text-xl sm:text-3xl font-bold border border-red-400 outline-red-500"}  
                                 type="number" 
                                 placeholder="MM" 
                                 name="MM" 
@@ -126,7 +145,7 @@ export default function Calculator() {
                                 onChange={handleValueMonth}
                                 value={month}
                             />
-                            <input className="p-4 px-5 mx-3 md:mx-7 w-24 sm:w-28 md:w-36 h-18 rounded-xl text-xl sm:text-3xl font-bold border border-black-400 outline-purple-900 " 
+                            <input className={invalidAll ? "p-4 px-5 mx-3 md:mx-7 w-24 sm:w-28 md:w-36 h-18 rounded-xl text-xl sm:text-3xl font-bold border border-black-400 outline-purple-900" : "p-4 px-5 mx-3 md:mx-7 w-24 sm:w-28 md:w-36 h-18 rounded-xl text-xl sm:text-3xl font-bold border border-red-400 outline-red-500"}  
                                 type="number" 
                                 placeholder="YYYY" 
                                 name="YYYY" 
@@ -136,22 +155,16 @@ export default function Calculator() {
                                 value={year}
                             />
                         </div>
-                        <div className="block relative top-0 left-0">
-                            {invalidDay && (
-                                <div className=" md:mx-7 sm:w-28 md:w-36 font-medium text-sm text-red-500">
-                                    {invalidDay}
-                                </div>
-                            )}
-                            {invalidMonth && (
-                                <div className=" md:mx-7 sm:w-28 md:w-36 font-medium text-sm text-red-500">
-                                    {invalidMonth}
-                                </div>
-                            )}
-                            {invalidYear && (
-                                <div className="md:mx-7 sm:w-28 md:w-36 font-medium text-sm text-red-500">
-                                    {invalidYear}
-                                </div>
-                            )}
+                        <div className="flex">
+                            <div className="mx-3 md:mx-7 w-24 sm:w-28 md:w-36 text-red-500 static top-0">
+                                {invalidDay}
+                            </div>
+                            <div className="mx-3 md:mx-7 w-24 sm:w-28 md:w-36 text-red-500 static top-0"> 
+                                {invalidMonth} 
+                            </div> 
+                            <div className="mx-3 md:mx-7 w-24 sm:w-28 md:w-36 text-red-500 static top-0"> 
+                                {invalidYear} 
+                            </div> 
                         </div>
                         <div className="flex justify-center items-center my-8 mt-12 md:mt-4 md:my-0">
                             <div className="border w-10/12 md:px-80"></div>
@@ -164,11 +177,13 @@ export default function Calculator() {
                                     {isNaN(outputYear) ? "--" : outputYear}
                                 </span>}years
                             </h1>
+                            
                             <h1 className="font-bold text-6xl sm:text-8xl md:text-9xl">
                                 {<span className="text-purple-700">
                                     {isNaN(outputMonth) ? "--" : outputMonth}
                                 </span>}months
                             </h1>
+                            
                             <h1 className="font-bold text-6xl sm:text-8xl md:text-9xl">
                                 {<span className="text-purple-700">
                                     {isNaN(outputDay) ? "--" : outputDay}
