@@ -35,9 +35,7 @@ export default function Calculator() {
         let calculateMonth = current_month - month;
         let calculateYear = current_year - year;
 
-        if (isNaN(!calculateDay)) {
-            setInvalidDay("This field is required");
-        } else if (day === false) {
+        if (isNaN(!calculateDay) || (day === false)) {
             setInvalidDay("This field is required");
         } else if (day >= 1 && day <= 31) {
             setInvalidDay("");
@@ -47,9 +45,7 @@ export default function Calculator() {
             setInvalidDay("This field is required")
         }
 
-        if (isNaN(!calculateMonth)) {
-            setInvalidMonth("This field is required");
-        } else if (month === false) {
+        if (isNaN(!calculateMonth) || (month === false)) {
             setInvalidMonth("This field is required");
         } else if (month >= 1 && month <= 12) {
             setInvalidMonth("");
@@ -59,9 +55,7 @@ export default function Calculator() {
             setInvalidMonth("This field is required")
         }
 
-        if (isNaN(!calculateYear)) {
-            setInvalidYear("This field is required");
-        } else if (year === false) {
+        if (isNaN(!calculateYear) || (year === false)) {
             setInvalidYear("This field is required");
         } else if (year >= 1 && year <= current_year) {
             setInvalidYear("");
