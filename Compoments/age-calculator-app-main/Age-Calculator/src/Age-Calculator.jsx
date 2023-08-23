@@ -1,7 +1,8 @@
 import { useState } from "react";
 import moment from 'moment';
-export default function Calculator() {
 
+export default function Calculator() {
+    // State variables
     const [day, setDay] = useState(false);
     const [month, setMonth] = useState(false);
     const [year, setYear] = useState(false);
@@ -13,14 +14,15 @@ export default function Calculator() {
     const [invalidYear, setInvalidYear] = useState("");
     const [invalidAll, setInvalidAll] = useState(true);
 
+    // Handle click event
     function handleClick() {
-
         let current_day = parseInt(moment().format("Do"));
         let current_month = parseInt(moment().format("M"));
         let current_year = parseInt(moment().format("YYYY"));
-        
+
         let date = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
 
+        // Calculate current date
         if (day > current_day) {
             current_day = current_day + date[month - 1];
             current_month--;
@@ -31,10 +33,12 @@ export default function Calculator() {
             current_month = current_month + 12;
         }
 
+        // Calculate difference in days, months, and years
         let calculateDay = current_day - day;
         let calculateMonth = current_month - month;
         let calculateYear = current_year - year;
 
+        // Validate day input
         if (isNaN(!calculateDay) || (day === false)) {
             setInvalidDay("This field is required");
         } else if (day >= 1 && day <= 31) {
@@ -45,6 +49,7 @@ export default function Calculator() {
             setInvalidDay("This field is required")
         }
 
+        // Validate month input
         if (isNaN(!calculateMonth) || (month === false)) {
             setInvalidMonth("This field is required");
         } else if (month >= 1 && month <= 12) {
@@ -55,6 +60,7 @@ export default function Calculator() {
             setInvalidMonth("This field is required")
         }
 
+        // Validate year input
         if (isNaN(!calculateYear) || (year === false)) {
             setInvalidYear("This field is required");
         } else if (year >= 1 && year <= current_year) {
@@ -65,6 +71,7 @@ export default function Calculator() {
             setInvalidYear("This field is required")
         }
 
+        // Validate all inputs
         if (isNaN(!calculateDay || !calculateMonth || !calculateYear)) {
             setInvalidAll(false);
         } else if (year === false) {
@@ -77,6 +84,7 @@ export default function Calculator() {
             setInvalidAll(false);
         }
 
+        // Calculate and set output values
         if (day >= 1 && day <= 31 && month >= 1 && month <= 12 && year >= 1 && year <= current_year) {
             setOutputDay(calculateDay);
             setOutputMonth(calculateMonth);
@@ -88,16 +96,19 @@ export default function Calculator() {
         }
     }
 
+    // Handle day input change
     function handleValueDay(event) {
         let inputValue = parseInt(event.target.value);
         setDay(inputValue);
     }
 
+    // Handle month input change
     function handleValueMonth(event) {
         const inputValue = parseInt(event.target.value);
         setMonth(inputValue);
     }
 
+    // Handle year input change
     function handleValueYear(event) {
         const inputValue = parseInt(event.target.value);
         setYear(inputValue);
@@ -118,72 +129,70 @@ export default function Calculator() {
                             YEAR 
                         </p>
                     </div>
-                        <div className="flex justify-evenly mr-32">
-                            <input className={invalidAll ? "p-4 px-5 mx-3 md:mx-7 w-24 sm:w-28 md:w-36 h-18 rounded-xl text-xl sm:text-3xl font-bold border border-black-400 outline-purple-900" : "p-4 px-5 mx-3 md:mx-7 w-24 sm:w-28 md:w-36 h-18 rounded-xl text-xl sm:text-3xl font-bold border border-red-400 outline-red-500"} 
-                                type="number" 
-                                placeholder="DD" 
-                                name="DD"
-                                id="Day"
-                                min="1"
-                                max="31"
-                                onChange={handleValueDay}
-                                value={day} 
-                            />
-                            <input className={invalidAll ? "p-4 px-5 mx-3 md:mx-7 w-24 sm:w-28 md:w-36 h-18 rounded-xl text-xl sm:text-3xl font-bold border border-black-400 outline-purple-900" : "p-4 px-5 mx-3 md:mx-7 w-24 sm:w-28 md:w-36 h-18 rounded-xl text-xl sm:text-3xl font-bold border border-red-400 outline-red-500"}  
-                                type="number" 
-                                placeholder="MM" 
-                                name="MM" 
-                                id="Month" 
-                                min="1" 
-                                max="12"
-                                onChange={handleValueMonth}
-                                value={month}
-                            />
-                            <input className={invalidAll ? "p-4 px-5 mx-3 md:mx-7 w-24 sm:w-28 md:w-36 h-18 rounded-xl text-xl sm:text-3xl font-bold border border-black-400 outline-purple-900" : "p-4 px-5 mx-3 md:mx-7 w-24 sm:w-28 md:w-36 h-18 rounded-xl text-xl sm:text-3xl font-bold border border-red-400 outline-red-500"}  
-                                type="number" 
-                                placeholder="YYYY" 
-                                name="YYYY" 
-                                id="Year" 
-                                min="1900"
-                                onChange={handleValueYear}
-                                value={year}
-                            />
+                    <div className="flex justify-evenly mr-32">
+                        <input className={invalidAll ? "p-4 px-5 mx-3 md:mx-7 w-24 sm:w-28 md:w-36 h-18 rounded-xl text-xl sm:text-3xl font-bold border border-black-400 outline-purple-900" : "p-4 px-5 mx-3 md:mx-7 w-24 sm:w-28 md:w-36 h-18 rounded-xl text-xl sm:text-3xl font-bold border border-red-400 outline-red-500"} 
+                            type="number" 
+                            placeholder="DD" 
+                            name="DD"
+                            id="Day"
+                            min="1"
+                            max="31"
+                            onChange={handleValueDay}
+                            value={day} 
+                        />
+                        <input className={invalidAll ? "p-4 px-5 mx-3 md:mx-7 w-24 sm:w-28 md:w-36 h-18 rounded-xl text-xl sm:text-3xl font-bold border border-black-400 outline-purple-900" : "p-4 px-5 mx-3 md:mx-7 w-24 sm:w-28 md:w-36 h-18 rounded-xl text-xl sm:text-3xl font-bold border border-red-400 outline-red-500"}  
+                            type="number" 
+                            placeholder="MM" 
+                            name="MM" 
+                            id="Month" 
+                            min="1" 
+                            max="12"
+                            onChange={handleValueMonth}
+                            value={month}
+                        />
+                        <input className={invalidAll ? "p-4 px-5 mx-3 md:mx-7 w-24 sm:w-28 md:w-36 h-18 rounded-xl text-xl sm:text-3xl font-bold border border-black-400 outline-purple-900" : "p-4 px-5 mx-3 md:mx-7 w-24 sm:w-28 md:w-36 h-18 rounded-xl text-xl sm:text-3xl font-bold border border-red-400 outline-red-500"}  
+                            type="number" 
+                            placeholder="YYYY" 
+                            name="YYYY" 
+                            id="Year" 
+                            min="1900"
+                            onChange={handleValueYear}
+                            value={year}
+                        />
+                    </div>
+                    <div className="flex">
+                        <div className="mx-3 md:mx-7 w-24 sm:w-28 md:w-36 text-red-500 static top-0">
+                            {invalidDay}
                         </div>
-                        <div className="flex">
-                            <div className="mx-3 md:mx-7 w-24 sm:w-28 md:w-36 text-red-500 static top-0">
-                                {invalidDay}
-                            </div>
-                            <div className="mx-3 md:mx-7 w-24 sm:w-28 md:w-36 text-red-500 static top-0"> 
-                                {invalidMonth} 
-                            </div> 
-                            <div className="mx-3 md:mx-7 w-24 sm:w-28 md:w-36 text-red-500 static top-0"> 
-                                {invalidYear} 
-                            </div> 
-                        </div>
-                        <div className="flex justify-center items-center my-8 mt-12 md:mt-4 md:my-0">
-                            <div className="border w-10/12 md:px-80"></div>
-                            <img onClick={handleClick} className="p-4 rounded-full w-16 cursor-pointer bg-purple-700 hover:bg-black-950 transition-all ease-in-out duration-500" src="icon-arrow.svg" alt="Arrow-Icon" />
-                            <div className="md:hidden border w-10/12 md:px-80"></div>
-                        </div>
-                        <div className="ml-8">
-                            <h1 className="font-bold text-6xl sm:text-8xl md:text-9xl">
-                                {<span className="text-purple-700">
-                                    {isNaN(outputYear) ? "--" : outputYear}
-                                </span>}years
-                            </h1>
-                            
-                            <h1 className="font-bold text-6xl sm:text-8xl md:text-9xl">
-                                {<span className="text-purple-700">
-                                    {isNaN(outputMonth) ? "--" : outputMonth}
-                                </span>}months
-                            </h1>
-                            
-                            <h1 className="font-bold text-6xl sm:text-8xl md:text-9xl">
-                                {<span className="text-purple-700">
-                                    {isNaN(outputDay) ? "--" : outputDay}
-                                </span>}days
-                            </h1>
-                        </div>
+                        <div className="mx-3 md:mx-7 w-24 sm:w-28 md:w-36 text-red-500 static top-0"> 
+                            {invalidMonth} 
+                        </div> 
+                        <div className="mx-3 md:mx-7 w-24 sm:w-28 md:w-36 text-red-500 static top-0"> 
+                            {invalidYear} 
+                        </div> 
+                    </div>
+                    <div className="flex justify-center items-center my-8 mt-12 md:mt-4 md:my-0">
+                        <div className="border w-10/12 md:px-80"></div>
+                        <img onClick={handleClick} className="p-4 rounded-full w-16 cursor-pointer bg-purple-700 hover:bg-black-950 transition-all ease-in-out duration-500" src="icon-arrow.svg" alt="Arrow-Icon" />
+                        <div className="md:hidden border w-10/12 md:px-80"></div>
+                    </div>
+                    <div className="ml-8">
+                        <h1 className="font-bold text-6xl sm:text-8xl md:text-9xl">
+                            {<span className="text-purple-700">
+                                {isNaN(outputYear) ? "--" : outputYear}
+                            </span>}years
+                        </h1>
+                        <h1 className="font-bold text-6xl sm:text-8xl md:text-9xl">
+                            {<span className="text-purple-700">
+                                {isNaN(outputMonth) ? "--" : outputMonth}
+                            </span>}months
+                        </h1>
+                        <h1 className="font-bold text-6xl sm:text-8xl md:text-9xl">
+                            {<span className="text-purple-700">
+                                {isNaN(outputDay) ? "--" : outputDay}
+                            </span>}days
+                        </h1>
+                    </div>
                 </div>
             </nav>
         </>
